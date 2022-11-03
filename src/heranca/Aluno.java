@@ -1,6 +1,8 @@
 package heranca;
 
-public class Aluno extends Pessoa {
+import interfaces.AlunoInterface;
+
+public class Aluno extends Pessoa implements AlunoInterface {
 
 	private int ra;
 	

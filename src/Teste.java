@@ -1,18 +1,19 @@
 import heranca.Aluno;
-import heranca.Pessoa;
 import heranca.Professor;
+import interfaces.AlunoInterface;
+import interfaces.PessoaInterface;
 
 public class Teste {
 	
 	public static void main(String[] args) {
 		System.out.println("Ola");
 		
-		Aluno a = new Aluno(123456);
+		AlunoInterface a = new Aluno(123456);
 		Professor p = new Professor();
 		
 		
 		a.setNome("Felipe");
-		a.setEmailUnivesp("felipe@univesp.br");
+		a.setEmailUnivesp("felipe@aluno.univesp.br");
 		a.setEmailAlternativo("felipe@gmail.com");
 		
 		
@@ -30,7 +31,7 @@ public class Teste {
 		
 	}
 	
-	 public static void printPessoa(Pessoa p) {
+	 public static void printPessoa(PessoaInterface p) {
 		System.out.println("Nome: " + p.getNome());
 		System.out.println("E-mail: " + p.getEmailUnivesp());
 	}

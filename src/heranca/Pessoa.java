@@ -1,6 +1,8 @@
 package heranca;
 
-public class Pessoa {
+import interfaces.PessoaInterface;
+
+public abstract class Pessoa implements PessoaInterface {
 
 	protected String nome;
 	

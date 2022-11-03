@@ -1,6 +1,8 @@
 package heranca;
 
-public class Professor extends Pessoa {
+import interfaces.ProfessorInterface;
+
+public class Professor extends Pessoa implements ProfessorInterface {
 
 	public String curso;
 	
