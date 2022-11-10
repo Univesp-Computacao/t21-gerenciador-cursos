@@ -1,6 +1,8 @@
 package heranca;
 
 import interfaces.AlunoInterface;
+import utils.Email;
+import utils.EmailInterface;
 
 public class Aluno extends Pessoa implements AlunoInterface {
 
@@ -17,18 +19,25 @@ public class Aluno extends Pessoa implements AlunoInterface {
 	
 	@Override
 	public String toString() {
-		return nome + " RA: " + ra;
+		
+		return String.format("RA: %d\nNome: %s\nE-mail: %s\n", getRa(), getNome(), getEmailUnivesp());
 	}
 	
 	@Override
 	public void setEmailUnivesp(String email) {
-		email = email.trim();
-		boolean temDominio = email.endsWith("aluno.univesp.br");
+		this.setEmailUnivesp(new Email(email));
+	}
+	
+	@Override
+	public void setEmailUnivesp(EmailInterface email) {
+		if (email == null) {
+			throw new NullPointerException("E-mail não Pode ser Nulo");
+		}
 		
-		if (temDominio) {
+		if(email.temDominio("aluno.univesp.br")) {
 			super.setEmailUnivesp(email);
 		} else {
-			throw new IllegalArgumentException("E-mail não tem domínio Univesp");
+			throw new IllegalArgumentException("E-mail não tem domínio Aluno da Univesp");
 		}
 	}
 

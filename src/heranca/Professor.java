@@ -2,12 +2,10 @@ package heranca;
 
 import interfaces.ProfessorInterface;
 
-public class Professor extends Pessoa implements ProfessorInterface {
-
-	public String curso;
+public class Professor extends Pessoa implements ProfessorInterface {	
 	
 	@Override
 	public String toString() {
-		return "Prof. " + nome + " Curso: " + curso;
+		return String.format("Prof. %s\nE-mail: %s", getNome(), getEmailUnivesp());
 	}
 }

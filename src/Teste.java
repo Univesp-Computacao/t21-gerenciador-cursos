@@ -1,39 +1,50 @@
+import java.util.Scanner;
+
 import heranca.Aluno;
 import heranca.Professor;
-import interfaces.AlunoInterface;
 import interfaces.PessoaInterface;
 
 public class Teste {
 	
 	public static void main(String[] args) {
-		System.out.println("Ola");
-		
-		AlunoInterface a = new Aluno(123456);
-		Professor p = new Professor();
-		
-		
-		a.setNome("Felipe");
-		a.setEmailUnivesp("felipe@aluno.univesp.br");
-		a.setEmailAlternativo("felipe@gmail.com");
+		System.out.println("Digite A para criar um Aluno, ou P para Professor:");
+
+		Scanner sc = new Scanner(System.in);
+		String cmd = sc.nextLine();
 		
 		
-//		p.nome = "Carlos";
-//		p.emailUnivesp = "carlos@univesp.br";
-//		p.emailAlternativo = "carlos@gmail.com";
-//		p.curso = "OOP";
+		PessoaInterface pessoa = null;
+		if (cmd.equals("A")) {
+			
+			System.out.println("Digite o numero de matricula do Aluno:");
+			int ra = sc.nextInt();
+			sc.nextLine(); // Para garantir que a linha toda seja lida e comece da proxima
+			
+			pessoa = new Aluno(ra);
+			
+			System.out.println("Digite o nome do Aluno:");
+			String nome = sc.nextLine();
+			pessoa.setNome(nome);
+			
+			System.out.println("Digite o email do Aluno:");
+			String email = sc.nextLine();
+			pessoa.setEmailUnivesp(email);
+		} else if (cmd.equals("P")) {
+			
+			pessoa = new Professor();
+			
+			System.out.println("Digite o nome do Professor:");
+			String nome = sc.nextLine();
+			pessoa.setNome(nome);
+			
+			System.out.println("Digite o email do Professor:");
+			String email = sc.nextLine();
+			pessoa.setEmailUnivesp(email);
+		} else {
+			System.out.println("Comando Inválido");
+		}
 		
-		Teste.printPessoa(a);
-//		Teste.printPessoa(p);
-		
-		System.out.println(a);
-		// System.out.println(p);
-		
-		
-	}
-	
-	 public static void printPessoa(PessoaInterface p) {
-		System.out.println("Nome: " + p.getNome());
-		System.out.println("E-mail: " + p.getEmailUnivesp());
+		System.out.println(pessoa);
 	}
 	
 
