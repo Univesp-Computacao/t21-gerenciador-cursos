@@ -1,4 +1,4 @@
-package interfaces;
+package gerenciador.entidades;
 
 public interface AlunoInterface extends PessoaInterface {
 

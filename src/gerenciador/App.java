@@ -1,10 +1,11 @@
+package gerenciador;
 import java.util.Scanner;
 
-import heranca.Aluno;
-import heranca.Professor;
-import interfaces.PessoaInterface;
+import gerenciador.entidades.Aluno;
+import gerenciador.entidades.PessoaInterface;
+import gerenciador.entidades.Professor;
 
-public class Teste {
+public class App {
 	
 	public static void main(String[] args) {
 		System.out.println("Digite A para criar um Aluno, ou P para Professor:");

@@ -1,8 +1,7 @@
-package heranca;
+package gerenciador.entidades;
 
-import interfaces.AlunoInterface;
-import utils.Email;
-import utils.EmailInterface;
+import gerenciador.utils.Email;
+import gerenciador.utils.EmailInterface;
 
 public class Aluno extends Pessoa implements AlunoInterface {
 

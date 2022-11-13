@@ -1,6 +1,6 @@
-package interfaces;
+package gerenciador.entidades;
 
-import utils.EmailInterface;
+import gerenciador.utils.EmailInterface;
 
 public interface PessoaInterface {
 	public String getNome();

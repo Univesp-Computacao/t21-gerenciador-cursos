@@ -1,4 +1,4 @@
-package utils;
+package gerenciador.utils;
 
 public interface EmailInterface {
 

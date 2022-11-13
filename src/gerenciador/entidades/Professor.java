@@ -1,6 +1,4 @@
-package heranca;
-
-import interfaces.ProfessorInterface;
+package gerenciador.entidades;
 
 public class Professor extends Pessoa implements ProfessorInterface {	
 	
