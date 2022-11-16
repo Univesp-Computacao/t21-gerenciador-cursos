@@ -1,9 +1,11 @@
 package gerenciador.entidades;
 
+import java.util.Objects;
+
 import gerenciador.utils.Email;
 import gerenciador.utils.EmailInterface;
 
-public abstract class Pessoa implements PessoaInterface {
+public abstract class Pessoa implements PessoaInterface, Comparable<PessoaInterface> {
 
 	private String nome;
 	
@@ -56,6 +58,26 @@ public abstract class Pessoa implements PessoaInterface {
 		}
 		
 		emailAlternativo = email;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(emailUnivesp);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Pessoa))
+			return false;
+		Pessoa other = (Pessoa) obj;
+		return Objects.equals(emailUnivesp, other.emailUnivesp);
+	}
+	
+	@Override
+	public int compareTo(PessoaInterface o) {
+		return emailUnivesp.compareTo(o.getEmailUnivesp());
 	}
 
 	

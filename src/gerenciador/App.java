@@ -1,52 +1,60 @@
 package gerenciador;
-import java.util.Scanner;
 
-import gerenciador.entidades.Aluno;
-import gerenciador.entidades.PessoaInterface;
-import gerenciador.entidades.Professor;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
+
+import gerenciador.comandos.ComandoCriaAluno;
+import gerenciador.comandos.ComandoCriaProfessor;
+import gerenciador.comandos.ComandoInterface;
+import gerenciador.entidades.AlunoInterface;
+import gerenciador.entidades.ProfessorInterface;
 
 public class App {
-	
-	public static void main(String[] args) {
-		System.out.println("Digite A para criar um Aluno, ou P para Professor:");
 
-		Scanner sc = new Scanner(System.in);
-		String cmd = sc.nextLine();
-		
-		
-		PessoaInterface pessoa = null;
-		if (cmd.equals("A")) {
-			
-			System.out.println("Digite o numero de matricula do Aluno:");
-			int ra = sc.nextInt();
-			sc.nextLine(); // Para garantir que a linha toda seja lida e comece da proxima
-			
-			pessoa = new Aluno(ra);
-			
-			System.out.println("Digite o nome do Aluno:");
-			String nome = sc.nextLine();
-			pessoa.setNome(nome);
-			
-			System.out.println("Digite o email do Aluno:");
-			String email = sc.nextLine();
-			pessoa.setEmailUnivesp(email);
-		} else if (cmd.equals("P")) {
-			
-			pessoa = new Professor();
-			
-			System.out.println("Digite o nome do Professor:");
-			String nome = sc.nextLine();
-			pessoa.setNome(nome);
-			
-			System.out.println("Digite o email do Professor:");
-			String email = sc.nextLine();
-			pessoa.setEmailUnivesp(email);
-		} else {
-			System.out.println("Comando Inválido");
-		}
-		
-		System.out.println(pessoa);
+	private Set<AlunoInterface> bancoAluno;
+	
+	private Set<ProfessorInterface> bancoProfessor;
+	
+	private Map<String, ComandoInterface> comandos;
+	
+	public App() {
+		super();
 	}
 	
-
+	public void init() {
+		bancoAluno = new TreeSet<>();
+		
+		bancoProfessor = new TreeSet<>();
+		
+		comandos = new HashMap<>();
+		
+		ComandoInterface comandoCriaAluno = new ComandoCriaAluno(bancoAluno);
+		
+		ComandoInterface comandoCriaProfessor = new ComandoCriaProfessor(bancoProfessor);
+		
+		comandos.put("A", comandoCriaAluno);
+		
+		comandos.put("P", comandoCriaProfessor);
+	}
+	
+	public boolean run(Scanner sc) {
+		System.out.println("Digite A para criar um Aluno, ou P para Professor:");
+		System.out.println("Digite X para sair:");
+		
+		String comando = sc.nextLine();
+		
+		if (comando.equals("X")) {
+			return false;
+		}
+		
+		if (comandos.containsKey(comando)) {
+			 return comandos.get(comando).executa(sc);
+		} else {
+			System.out.println("Comando Inválido!");
+			return true;
+		}
+	}
 }
